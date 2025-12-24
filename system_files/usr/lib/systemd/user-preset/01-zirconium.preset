@@ -2,3 +2,5 @@ enable dms.service
 enable chezmoi-init.service
 enable chezmoi-update.timer
 enable foot.service
+enable iio-niri.service
+enable udiskie.service

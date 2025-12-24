@@ -104,21 +104,20 @@ dnf install -y \
 
 cp -avf "/ctx/files"/. /
 
-systemctl enable brew-setup.service
-systemctl enable flatpak-preinstall.service
 systemctl enable --global chezmoi-init.service
-systemctl enable --global foot.service
 systemctl enable --global chezmoi-update.timer
 systemctl enable --global dms.service
-systemctl enable --global gnome-keyring-daemon.socket
+systemctl enable --global foot.service
 systemctl enable --global gnome-keyring-daemon.service
-systemctl enable --global swayidle.service
+systemctl enable --global gnome-keyring-daemon.socket
+systemctl enable --global iio-niri.service
 systemctl enable --global udiskie.service
 systemctl preset --global chezmoi-init
 systemctl preset --global chezmoi-update
-systemctl preset --global swayidle
-systemctl preset --global udiskie
 systemctl preset --global foot
+systemctl preset --global udiskie
+systemctl enable brew-setup.service
+systemctl enable flatpak-preinstall.service
 
 git clone "https://github.com/noctalia-dev/noctalia-shell.git" /usr/share/zirconium/noctalia-shell
 cp /usr/share/zirconium/skel/Pictures/Wallpapers/mountains.png /usr/share/zirconium/noctalia-shell/Assets/Wallpaper/noctalia.png
