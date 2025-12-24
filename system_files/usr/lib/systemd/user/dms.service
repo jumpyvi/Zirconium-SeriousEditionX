@@ -4,7 +4,7 @@ PartOf=graphical-session.target
 After=graphical-session.target
 
 [Service]
-ExecStart=dms run
+ExecStart=dms run --session
 Restart=on-failure
 RestartSec=1
 
