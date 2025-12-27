@@ -9,8 +9,10 @@ dnf -y copr disable zirconium/packages
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
     matugen \
     iio-niri \
-    valent-git \
-    xwayland-satellite # specifically just for version 0.8 (track RHBZ#2419373 for upstream version bump)
+    valent-git
+
+# FIXME: remove from testing once its merged into f43
+dnf install -y --enablerepo=updates-testing xwayland-satellite
 
 dnf -y copr enable yalter/niri-git
 dnf -y copr disable yalter/niri-git
