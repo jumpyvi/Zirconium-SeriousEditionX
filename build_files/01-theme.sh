@@ -25,6 +25,7 @@ rm -rf /usr/share/doc/niri
 dnf -y copr enable avengemedia/danklinux
 dnf -y copr disable avengemedia/danklinux
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:avengemedia:danklinux install quickshell-git
+install -Dpm0644 -t /usr/lib/pam.d/ /usr/share/quickshell/dms/assets/pam/* # Fixes long login times on fingerprint auth
 
 dnf -y copr enable shadowblip/InputPlumber
 dnf -y copr disable shadowblip/InputPlumber
