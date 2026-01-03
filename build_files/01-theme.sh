@@ -11,9 +11,6 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:zirconium:packages install \
     iio-niri \
     valent-git
 
-# FIXME: remove from testing once its merged into f43
-dnf install -y --enablerepo=updates-testing xwayland-satellite
-
 dnf -y copr enable yalter/niri-git
 dnf -y copr disable yalter/niri-git
 echo "priority=1" | tee -a /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:yalter:niri-git.repo
@@ -25,7 +22,6 @@ rm -rf /usr/share/doc/niri
 dnf -y copr enable avengemedia/danklinux
 dnf -y copr disable avengemedia/danklinux
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:avengemedia:danklinux install quickshell-git
-install -Dpm0644 -t /usr/lib/pam.d/ /usr/share/quickshell/dms/assets/pam/* # Fixes long login times on fingerprint auth
 
 dnf -y copr enable shadowblip/InputPlumber
 dnf -y copr disable shadowblip/InputPlumber
@@ -46,6 +42,7 @@ dnf -y \
     dms-greeter \
     dgop \
     dsearch
+install -Dpm0644 -t /usr/lib/pam.d/ /usr/share/quickshell/dms/assets/pam/* # Fixes long login times on fingerprint auth
 
 dnf -y install \
     brightnessctl \
@@ -79,7 +76,8 @@ dnf -y install \
     wl-clipboard \
     xdg-desktop-portal-gnome \
     xdg-desktop-portal-gtk \
-    xdg-user-dirs
+    xdg-user-dirs \
+    xwayland-satellite
 rm -rf /usr/share/doc/just
 
 dnf install -y --setopt=install_weak_deps=False \
