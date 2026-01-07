@@ -1,9 +1,9 @@
 zdots_path := "/usr/share/zirconium/zdots"
 
-import "/usr/share/ublue-os/just/update.just"
-import "/usr/share/ublue-os/just/shared.just"
-import "/usr/share/ublue-os/just/default.just"
-set allow-duplicate-recipes := true
+# import "/usr/share/ublue-os/just/update.just"
+# import "/usr/share/ublue-os/just/shared.just"
+# import "/usr/share/ublue-os/just/default.just"
+# set allow-duplicate-recipes := true
 
 default:
     @zjust --choose
@@ -52,6 +52,25 @@ toggle-autorotation:
         systemctl unmask --user iio-niri.service
         systemctl enable --now --user iio-niri.service
         echo "Enabled autorotation"
+        exit 0
+    fi
+
+toggle-automatic-dotfiles:
+    #!/usr/bin/env bash
+
+    if systemctl is-enabled --quiet --user chezmoi-update.timer ; then
+        systemctl disable --now --user chezmoi-update.timer
+        systemctl mask --now --user chezmoi-update.timer
+        systemctl disable --now --user chezmoi-init.service
+        systemctl mask --user chezmoi-init.service
+        echo "Disabled dotfile updates"
+        exit 0
+    else
+        systemctl unmask --user chezmoi-init.service
+        systemctl enable --user chezmoi-init.service
+        systemctl unmask --user chezmoi-update.timer
+        systemctl enable --now --user chezmoi-update.timer
+        echo "Enabled dotfile updates"
         exit 0
     fi
 
