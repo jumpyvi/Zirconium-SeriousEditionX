@@ -109,3 +109,6 @@ update-greeter:
 enroll-secure-boot-key:
     #!/usr/bin/env bash
     echo "This is not implemented yet!"
+
+set-accent-color:
+	gsettings set org.gnome.desktop.interface accent-color "$(gum choose blue teal green yellow orange red pink purple slate --limit 1 --header "Pick an accent colour")"
