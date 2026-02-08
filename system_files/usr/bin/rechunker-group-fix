@@ -15,7 +15,7 @@ for f in $(cat $GROUP_FILE); do
    cut -f1 -d':' <(echo $f) | xargs -I{} grep ^"{}" $GSHADOW_FILE &>/dev/null || \
      echo $(cut -f1 -d':' <(echo $f)):'!*::' >> $GSHADOW_FILE
 done && \
-cat > /etc/.zirc-rechunker-fix-do-not-removr <<EOF
+cat > /etc/.rechunker-fix <<EOF
 This file is for the group fix for the legacy rechunker. Do not remove this file, otherwise your groups will be modified.
 On Fedora Silverblue and many Universal Blue images, the groups are split into 2 files: /usr/lib/group, and /etc/group.
 This is a bad implementation that breaks the ability to rebase to an image that doesn't have a /usr/lib/group file. [1]

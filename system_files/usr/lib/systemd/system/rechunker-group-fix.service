@@ -16,7 +16,7 @@
 Description=Fix groups for Legacy rechunker
 Wants=local-fs.target
 After=local-fs.target
-ConditionPathExists=!/etc/.zirc-rechunker-fix-do-not-removr
+ConditionPathExists=!/etc/.rechunker-fix
 # Before=systemd-sysusers.service
 
 [Service]
