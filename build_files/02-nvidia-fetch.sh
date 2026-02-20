@@ -10,6 +10,7 @@ dnf -y install gcc-c++
 
 dnf install -y --enablerepo=terra terra-release-nvidia
 dnf config-manager setopt terra-nvidia.enabled=0
+sed -r -i -e "s/(metalink)/#\1/" -e "s/#baseurl/baseurl/" /etc/yum.repos.d/terra-nvidia.repo
 dnf -y install --enablerepo=terra-nvidia akmod-nvidia
 dnf -y install --enablerepo=terra-nvidia --enablerepo=terra \
     nvidia-driver-cuda libnvidia-fbc libva-nvidia-driver nvidia-driver nvidia-modprobe nvidia-persistenced nvidia-settings
