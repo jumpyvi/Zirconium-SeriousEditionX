@@ -2,21 +2,21 @@
 
 set -xeuo pipefail
 
-HOME_URL="https://github.com/zirconium-dev/zirconium"
+HOME_URL="https://github.com/jumpyvi/zirconium-lts"
 echo "zirconium" | tee "/etc/hostname"
 # OS Release File (changed in order with upstream)
 # TODO: change ANSI_COLOR
 sed -i -f - /usr/lib/os-release <<EOF
-s|^NAME=.*|NAME=\"Zirconium\"|
-s|^PRETTY_NAME=.*|PRETTY_NAME=\"Zirconium\"|
+s|^NAME=.*|NAME=\"Zirconium-LTS\"|
+s|^PRETTY_NAME=.*|PRETTY_NAME=\"Zirconium LTS\"|
 s|^VERSION_CODENAME=.*|VERSION_CODENAME=\"Juno\"|
 s|^VARIANT_ID=.*|VARIANT_ID=""|
 s|^HOME_URL=.*|HOME_URL=\"${HOME_URL}\"|
 s|^BUG_REPORT_URL=.*|BUG_REPORT_URL=\"${HOME_URL}/issues\"|
 s|^SUPPORT_URL=.*|SUPPORT_URL=\"${HOME_URL}/issues\"|
-s|^CPE_NAME=\".*\"|CPE_NAME=\"cpe:/o:zirconium-dev:zirconium\"|
+s|^CPE_NAME=\".*\"|CPE_NAME=\"cpe:/o:zirconium-dev:zirconium-lts\"|
 s|^DOCUMENTATION_URL=.*|DOCUMENTATION_URL=\"${HOME_URL}\"|
-s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME="zirconium"|
+s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME="zirconium-lts"|
 
 /^REDHAT_BUGZILLA_PRODUCT=/d
 /^REDHAT_BUGZILLA_PRODUCT_VERSION=/d
