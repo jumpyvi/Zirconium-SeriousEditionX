@@ -16,7 +16,7 @@ sed --sandbox -i -e '/gnome_keyring.so/ s/-auth/auth/ ; /gnome_keyring.so/ s/-se
 
 # keep in sync with zirconium preset file
 systemctl preset greetd.service
-#systemctl preset tailscaled.service
+systemctl preset tailscaled.service
 systemctl preset --global chezmoi-init.service
 systemctl preset --global chezmoi-update.timer
 systemctl preset --global dms.service
@@ -27,6 +27,18 @@ systemctl preset --global gnome-keyring-daemon.service
 systemctl preset --global gnome-keyring-daemon.socket
 systemctl preset --global iio-niri.service
 #systemctl preset --global udiskie.service
+
+# Sane default for firewall
+curl -fsSLo /usr/lib/firewalld/zones/FedoraWorkstation.xml "https://src.fedoraproject.org/rpms/firewalld/raw/rawhide/f/FedoraWorkstation.xml"
+grep -F -e '<port protocol="udp" port="1025-65535"/>' /usr/lib/firewalld/zones/FedoraWorkstation.xml
+sed -i 's|^DefaultZone=.*|DefaultZone=FedoraWorkstation|g' /etc/firewalld/firewalld.conf
+sed -i 's|^IPv6_rpfilter=.*|IPv6_rpfilter=loose|g' /etc/firewalld/firewalld.conf
+grep -F -e "DefaultZone=FedoraWorkstation" /etc/firewalld/firewalld.conf
+grep -F -e "IPv6_rpfilter=loose" /etc/firewalld/firewalld.conf
+
+# ZramGenerator config
+curl -fsSLo /usr/lib/systemd/zram-generator.conf "https://src.fedoraproject.org/rpms/zram-generator/blob/rawhide/f/zram-generator.conf"
+grep -F -e "zram-size =" /usr/lib/systemd/zram-generator.conf
 
 install -Dpm0644 -t /usr/share/plymouth/themes/spinner/ /ctx/assets/logos/watermark.png
 install -Dpm0644 -t /usr/share/zirconium/skel/Pictures/Wallpapers/ /ctx/assets/wallpapers/*

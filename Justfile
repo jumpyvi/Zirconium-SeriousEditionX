@@ -46,7 +46,7 @@ disk-image $filesystem=filesystem:
 build:
     #!/usr/bin/env bash
     set -xeuo pipefail
-    podman build --dns=1.1.1.1 -t zirconium:latest .
+    podman build -t zirconium:latest .
 
 quick-iterate:
     #!/usr/bin/env bash

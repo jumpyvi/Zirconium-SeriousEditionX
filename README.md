@@ -37,7 +37,6 @@ Differences from Fedora Zirconium
 - Docker-ce & Qemu (Soon)
 
 Important missings:
-- Tailscale (Soon)
 - Udiskie
 - fcitx5
 - Video thumbnails in Nautilus

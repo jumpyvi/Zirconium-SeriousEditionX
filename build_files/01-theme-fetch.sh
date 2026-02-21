@@ -40,6 +40,11 @@ dnf -y --enablerepo copr:copr.fedorainfracloud.org:avengemedia:dms-git --enabler
     dgop \
     danksearch
 
+dnf config-manager --add-repo https://pkgs.tailscale.com/stable/rhel/10/tailscale.repo
+
+dnf -y install --enablerepo tailscale-stable \
+    tailscale
+
 dnf -y install --enablerepo copr:copr.fedorainfracloud.org:yselkowitz:wlroots-epel \
     chezmoi \
     ddcutil \
@@ -48,6 +53,7 @@ dnf -y install --enablerepo copr:copr.fedorainfracloud.org:yselkowitz:wlroots-ep
     ptyxis \
     fpaste \
     fzf \
+    zram-generator \
     git-core \
     gnome-disk-utility \
     gnome-keyring \
@@ -84,7 +90,6 @@ dnf -y install --enablerepo copr:copr.fedorainfracloud.org:yselkowitz:wlroots-ep
 # glycin-thumbnailer \
 # gnupg2-scdaemon \
 # khal \
-# tailscale \
 # udiskie \
 # ykman
 
