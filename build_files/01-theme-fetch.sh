@@ -14,6 +14,8 @@ dnf -y copr disable yalter/niri-git
 dnf -y config-manager setopt copr:copr.fedorainfracloud.org:yalter:niri-git.priority=1
 dnf -y --enablerepo copr:copr.fedorainfracloud.org:yalter:niri-git install --setopt=install_weak_deps=False \
     niri
+niri --version | grep -i -E "niri [[:digit:]]*\.[[:digit:]]* (.*\.git\..*)"
+
 
 dnf -y copr enable avengemedia/danklinux
 dnf -y copr disable avengemedia/danklinux
